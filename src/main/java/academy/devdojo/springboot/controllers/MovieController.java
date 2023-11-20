@@ -5,6 +5,8 @@ import academy.devdojo.springboot.requests.MoviePutRequestBody;
 import academy.devdojo.springboot.requests.MoviePostRequestBody;
 import academy.devdojo.springboot.services.MovieService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +20,8 @@ import java.util.List;
 public class MovieController {
     private final MovieService movieService;
     @GetMapping
-    public ResponseEntity<List<Movie>> listMovies(){
-        return ResponseEntity.ok(movieService.listMovies());
+    public ResponseEntity<Page<Movie>> listMovies(Pageable pageable){
+        return ResponseEntity.ok(movieService.listMovies(pageable));
     }
 
     @GetMapping("/{id}")
