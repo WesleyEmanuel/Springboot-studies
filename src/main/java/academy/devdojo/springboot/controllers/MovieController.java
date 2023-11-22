@@ -24,6 +24,11 @@ public class MovieController {
         return ResponseEntity.ok(movieService.listMovies(pageable));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Movie>> listAllMovies(){
+        return ResponseEntity.ok(movieService.listAllMovies());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Movie> findMovieById(@PathVariable long id){
         return ResponseEntity.ok(movieService.findMovieByIdOrThrowBadRequestException(id));

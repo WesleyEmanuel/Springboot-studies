@@ -23,6 +23,10 @@ public class MovieService {
         return movieRepository.findAll(pageable);
     }
 
+    public List<Movie> listAllMovies(){
+        return movieRepository.findAll();
+    }
+
     public Movie findMovieByIdOrThrowBadRequestException(long id){
         return movieRepository
                 .findById(id)
