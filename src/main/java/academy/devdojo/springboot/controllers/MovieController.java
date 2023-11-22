@@ -20,8 +20,8 @@ import java.util.List;
 public class MovieController {
     private final MovieService movieService;
     @GetMapping
-    public ResponseEntity<Page<Movie>> listMovies(Pageable pageable){
-        return ResponseEntity.ok(movieService.listMovies(pageable));
+    public ResponseEntity<Page<Movie>> listPaginatedMovies(Pageable pageable){
+        return ResponseEntity.ok(movieService.listPaginatedMovies(pageable));
     }
 
     @GetMapping("/all")

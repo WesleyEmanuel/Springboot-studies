@@ -19,7 +19,7 @@ import java.util.List;
 public class MovieService {
     private final MovieRepository movieRepository;
 
-    public Page<Movie> listMovies(Pageable pageable){
+    public Page<Movie> listPaginatedMovies(Pageable pageable){
         return movieRepository.findAll(pageable);
     }
 

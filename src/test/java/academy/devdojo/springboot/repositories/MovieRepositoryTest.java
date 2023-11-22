@@ -1,6 +1,7 @@
 package academy.devdojo.springboot.repositories;
 
 import academy.devdojo.springboot.domain.Movie;
+import academy.devdojo.springboot.util.MovieCreator;
 import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +23,7 @@ class MovieRepositoryTest {
     @Test
     @DisplayName("Save persists movie when Successful")
     void save_PersistsMovie_WhenSuccessful(){
-        Movie movieToBeSaved = createMovie();
+        Movie movieToBeSaved = MovieCreator.createMovieToBeSaved();
         Movie savedMovie = this.movieRepository.save(movieToBeSaved);
 
         Assertions.assertThat(savedMovie).isNotNull();
@@ -33,7 +34,7 @@ class MovieRepositoryTest {
     @Test
     @DisplayName("Save updates movie when Successful")
     void save_UpdatesMovie_WhenSuccessful(){
-        Movie movieToBeSaved = createMovie();
+        Movie movieToBeSaved = MovieCreator.createMovieToBeSaved();
         Movie savedMovie = this.movieRepository.save(movieToBeSaved);
 
         savedMovie.setName("Test Update Movie");
@@ -62,7 +63,7 @@ class MovieRepositoryTest {
     @Test
     @DisplayName("Delete removes movie when Successful")
     void delete_RemovesMovie_WhenSuccessful(){
-        Movie movieToBeSaved = createMovie();
+        Movie movieToBeSaved = MovieCreator.createMovieToBeSaved();
         Movie savedMovie = this.movieRepository.save(movieToBeSaved);
 
         this.movieRepository.delete(savedMovie);
@@ -75,7 +76,7 @@ class MovieRepositoryTest {
     @Test
     @DisplayName("Find By Name returns list of anime when Successful")
     void findByName_ReturnListOfAnime_WhenSuccessful(){
-        Movie movieToBeSaved = createMovie();
+        Movie movieToBeSaved = MovieCreator.createMovieToBeSaved();
         Movie savedMovie = this.movieRepository.save(movieToBeSaved);
 
         List<Movie> moviesList = this.movieRepository.findByName(savedMovie.getName());
@@ -91,7 +92,4 @@ class MovieRepositoryTest {
         Assertions.assertThat(moviesList).isEmpty();
     }
 
-    private Movie createMovie(){
-        return Movie.builder().name("Test Movie").build();
-    }
 }
